@@ -1,8 +1,9 @@
-<h2>File Upload In Progress</h2>
-
 {if $signalExists}
-	Upload Complete!
+<script type="text/javascript">
+	parent.location.href="{$postUrl|default:$smarty.server.PHP_SELF}"+"?giga_post=1&giga_session={$smarty.request.giga_session}";
+</script>
 {elseif $currentSize}
+<h2>File Upload In Progress</h2>
 	{$currentSize} / {$totalSize}
 	
 	<div class="gigaprogress" style="clear:both">

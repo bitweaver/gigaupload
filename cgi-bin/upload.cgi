@@ -174,13 +174,6 @@ while(($key,$value) = each %vars)
 	}
 }
 
-my $postUrl = $cgi->param('giga_post_url') || $CONFIG{'giga_post_url'};
-
-if( !$postUrl ) {
-	$postUrl = $ENV{REQUEST_URI};
-	$postUrl =~ s/cgi-bin\/upload\.cgi//g;
-}
-
 open (QSTR,">", "$qstring_file") or die "can't open output file";
 print QSTR $qstring;
 close (QSTR);
@@ -189,6 +182,11 @@ open (SIGNAL,">", $signal_file);
 print SIGNAL "\n";
 close (SIGNAL);
 
-print "Location: $postUrl?giga_post=1&giga_session=$sessionid\n\n";
+#my $postUrl = $cgi->param('giga_post_url') || $CONFIG{'giga_post_url'};
+#if( !$postUrl ) {
+#	$postUrl = $ENV{REQUEST_URI};
+#	$postUrl =~ s/cgi-bin\/upload\.cgi//g;
+#}
+#print "Location: $postUrl?giga_post=1&giga_session=$sessionid\n\n";
 
 exit;

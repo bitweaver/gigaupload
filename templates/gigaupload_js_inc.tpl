@@ -1,4 +1,4 @@
-<script type="text/javascript"><!--
+<script type="text/javascript">
 /* <![CDATA[ */
 {literal}
 // start fix for moz and netscape 6
@@ -31,32 +31,30 @@ if(typeof HTMLElement!="undefined" && !HTMLElement.prototype.insertAdjacentEleme
 }
 // end fix
 
-function startGigaUpload( pForm )
-{
+function startGigaUpload( pForm ) {
 	disableSubmit('submitbutton');
     progressUrl = "{/literal}{$smarty.const.GIGAUPLOAD_PKG_URL}{literal}progress.php";
     iTotal = escape("-1");
-    parameters = "iTotal=" + iTotal + "&iRead=0" + "&iStatus=1" + "&giga_session="+$('gigasession').value;
+    parameters = "iTotal=" + iTotal + "&iRead=0" + "&iStatus=1" + "&giga_session="+$('gigasession').value +"&post_url={/literal}{$smarty.server.PHP_SELF}{literal}";
 
     pForm.submit();
 
 	if( $('giga_progress_popup') ) {
-	    popUpWin(baseUrl,"standard",460,300);
+	    popUpWin(progressUrl+'?'+parameters,"standard",460,300);
 	} else {
-		hide( 'gigablock' );
-		show('gigaprogress')
+		hide('gigablock');
+		show('gigaprogress');
 		var pb = $("gigaprogressbar");
-	
 		new Ajax.PeriodicalUpdater({},progressUrl,{
 			'decay': 2,
 			'frequency' : 0.5,
 			'method': 'post',
 			'parameters': parameters,
-			'onSuccess' : function(request){updateProgress(pb,request)},
-			'onFailure':function(request){updateFailure(pb,request)}
+			'evalScripts': true,
+			'onSuccess' : function(request){ updateProgress(pb,request) },
+			'onFailure':function(request){ updateFailure(pb,request) }
 			}
 		)
-
 	}
 
 	return false;
@@ -67,7 +65,8 @@ function addUploadSlot() {
 }
 
 function updateProgress(pb,req) {
-	pb.innerHTML=req.responseText;
+		pb.innerHTML=req.responseText;
+//		parent.location.href={/literal}"{$postUrl|default:$smarty.server.PHP_SELF}" + "?giga_post=1&giga_session={$smarty.request.giga_session}{literal}";
 }
 
 function updateFailure(pb,req) {
@@ -79,4 +78,5 @@ function updateFailure(pb,req) {
 
 
 {/literal}
---></script>
+/* ]]> */
+</script>

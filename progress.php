@@ -12,6 +12,9 @@
 	$infoFile = $gigaConfig['giga_tmp_dir']."/".$_REQUEST['giga_session']."_flength";
 	$progressFile = $gigaConfig['giga_tmp_dir']."/".$_REQUEST['giga_session']."_fread";
 	$signalFile = $gigaConfig['giga_tmp_dir']."/".$_REQUEST['giga_session']."_signal";
+	if( !empty( $_REQUEST['post_url'] ) ) {
+		$gBitSmarty->assign( 'postUrl', $_REQUEST['post_url'] );
+	}
 	
 	$gBitSmarty->assign( 'signalExists', file_exists( $signalFile ) );
 	
