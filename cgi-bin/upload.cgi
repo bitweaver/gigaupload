@@ -123,7 +123,9 @@ sub hook
 	flock(TMP, LOCK_EX);
 	print TMP $bRead;
 	close TMP;
-	select(undef, undef, undef,0.01);	# sleep for fraction of a second. will throttle connection
+	if( $CONFIG{'throttle_delay'} ) {
+		select(undef, undef, undef, $CONFIG{'throttle_delay'});	# sleep for fraction of a second. will throttle connection
+	}
 }
 
 #
