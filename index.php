@@ -52,6 +52,7 @@ if( !empty( $_REQUEST['sid'] ) ) {
 //	unlink( $qStringFile );
 }
 
+$gBitSmarty->assign( 'action', $gBitSystem->getConfig( 'gigaupload_cgi_url', GIGAUPLOAD_PKG_URL.'cgi-bin/' ).'upload.cgi?session_id='.get_gigaupload_id() );
 $gBitSystem->display( 'bitpackage:gigaupload/gigaupload_generic.tpl', 'Upload Files' );
 
 	//include("../inc/head.php");

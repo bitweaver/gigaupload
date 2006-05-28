@@ -6,8 +6,11 @@
 <div>{$gigafiles.name[ix]}<br/>{$gigafiles.size[ix]}</div>
 {/section}
 
-<form enctype="multipart/form-data" action="{$smarty.const.GIGAUPLOAD_PKG_URL}cgi-bin/upload.cgi?sid={$sid}" method="post">
 
+{if $gBitSystem->isPackageActive( 'gigaupload' )}
+	{include file="bitpackage:gigaupload/gigaupload_form_inc.tpl"}
+	{assign var=id value="gigauploadform"}
+	{assign var=onsubmit value="return startGigaUpload();"}
 
 <p>
 Use this form to upload some files and check out the functionality of the uploader.
@@ -16,6 +19,19 @@ Use this form to upload some files and check out the functionality of the upload
 specially if you are on a high speed connection.
 </p>
 
+
+{form onSubmit=$onsubmit action=$action enctype="multipart/form-data" id=gigauploadform 
+legend=$gigauploadLegend|default:"Upload Files"}
+<div id="uploadform">
+	{include file="bitpackage:gigaupload/gigaupload_body_inc.tpl"}
+	
+	<div class="row submit">
+			<input type="submit" id="submitbutton" value="Upload">
+	</div>
+</div>
+{/form}
+
+{*
 <div class="row">
 	{forminput}
 	<table border=0 align="left" cellpadding=3>
@@ -32,9 +48,6 @@ specially if you are on a high speed connection.
 	</table>	
 	{/forminput}
 </div>
-<div class="row submit">
-		<input type="hidden" name="sessionid" value="{$sid}">
-		<input type="button" value="Send" onClick="gigaUpload();">
-</div>
+*}
 
-</form>
+{/if}
