@@ -52,7 +52,7 @@
 	}
 	
 	if( $gBitSystem->isAjaxRequest() ) {
-		print $gBitSmarty->fetch( 'bitpackage:gigaupload/gigaupload_progress.tpl' );
+		print $gBitSmarty->fetch( 'bitpackage:gigaupload/gigaupload_progress_inc.tpl' );
 	} else {
 
 		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Date in the past

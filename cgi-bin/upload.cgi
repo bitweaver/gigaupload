@@ -181,13 +181,13 @@ if( !$postUrl ) {
 	$postUrl =~ s/cgi-bin\/upload\.cgi//g;
 }
 
-open (SIGNAL,">", $signal_file);
-print SIGNAL "\n";
-close (SIGNAL);
-
 open (QSTR,">", "$qstring_file") or die "can't open output file";
 print QSTR $qstring;
 close (QSTR);
+
+open (SIGNAL,">", $signal_file);
+print SIGNAL "\n";
+close (SIGNAL);
 
 print "Location: $postUrl?giga_post=1&giga_session=$sessionid\n\n";
 

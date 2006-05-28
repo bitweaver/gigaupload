@@ -43,11 +43,10 @@ function startGigaUpload( pForm )
 	if( $('giga_progress_popup') ) {
 	    popUpWin(baseUrl,"standard",460,300);
 	} else {
-	    popUpWin(progressUrl+'?'+parameters,"standard",460,170);
-	//	show('gigaprogress')
+		hide( 'gigablock' );
+		show('gigaprogress')
 		var pb = $("gigaprogressbar");
-		Element.show(pb.parentNode);
-/*	
+	
 		new Ajax.PeriodicalUpdater({},progressUrl,{
 			'decay': 2,
 			'frequency' : 0.5,
@@ -57,7 +56,7 @@ function startGigaUpload( pForm )
 			'onFailure':function(request){updateFailure(pb,request)}
 			}
 		)
-*/
+
 	}
 
 	return false;
@@ -68,21 +67,7 @@ function addUploadSlot() {
 }
 
 function updateProgress(pb,req) {
-	var percent = parseInt(req.responseText);
-	if(!percent) percent = 0;
-	pb.style.width = percent + "%";
-	if(percent >= 100) {
-		var inp_id = pb.id.replace("_progress","");
-		if(sids[inp_id]) {
-			uploads_in_progress = uploads_in_progress - 1;
-			var inp = $(inp_id);
-			if(inp) {
-				inp.value = sids[inp_id];
-			}
-		}
-		Element.hide(pb.parentNode);
-		sids[inp_id] = false;
-	}
+	pb.innerHTML=req.responseText;
 }
 
 function updateFailure(pb,req) {
