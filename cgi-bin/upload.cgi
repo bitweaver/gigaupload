@@ -154,8 +154,6 @@ my $j=0;
 while(($key,$value) = each %vars)
 {
 	$file_upload = $cgi->param($key);
-carp "$key => ";
-carp $value;	
 	if(defined $value && $value ne '') {
 		my $fh = $cgi->upload($key);
 		if(defined $fh) {
@@ -174,8 +172,8 @@ carp $value;
 
 			$fh =~ s/([^a-zA-Z0-9_\-.])/uc sprintf("%%%02x",ord($1))/eg;
 			$tmp_filename =~ s/([^a-zA-Z0-9_\-.])/uc sprintf("%%%02x",ord($1))/eg;
-			$qstring .= "gigafile[name][$j]=$fh&gigafile[size][$j]=$fsize&";
-			$qstring .= "gigafile[tmp_name][$j]=$tmp_filename&gigafile[mime_type][$j]=$type&";
+			$qstring .= "gigafile[$j][name]=$fh&gigafile[$j][size]=$fsize&";
+			$qstring .= "gigafile[$j][tmp_name]=$tmp_filename&gigafile[$j][type]=$type&";
 			$j++;
 		} else {
 			$value =~ s/([^a-zA-Z0-9_\-.])/uc sprintf("%%%02x",ord($1))/eg;

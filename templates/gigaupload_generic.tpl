@@ -13,7 +13,7 @@ Files Uploaded:
 	{include file="bitpackage:gigaupload/gigaupload_js_inc.tpl"}
 	{assign var=id value="gigauploadform"}
 	{assign var=onsubmit value="return startGigaUpload(this);"}
-	{assign var=formTarget value="gigaiframe"}
+	{assign var=target value="gigaiframe"}
 
 <p>
 Use this form to upload some files and check out the functionality of the uploader.
@@ -23,33 +23,19 @@ specially if you are on a high speed connection.
 </p>
 
 
-{form onSubmit=$onsubmit action=$action enctype="multipart/form-data" id=$id target=$formTarget legend=$gigauploadLegend|default:"Upload Files"}
+{form onSubmit=$onsubmit action=$action enctype="multipart/form-data" id=$id target=$target legend=$gigauploadLegend|default:"Upload Files"}
 <div id="uploadform">
+
+	<div id="uploadblock">
 	{include file="bitpackage:gigaupload/gigaupload_form_inc.tpl"}
+	</div>
+	
+	{include file="bitpackage:gigaupload/gigaupload_progress_container_inc.tpl"}
 	
 	<div class="row submit">
 		<input type="submit" id="submitbutton" value="Upload">
 	</div>
 </div>
 {/form}
-
-{*
-<div class="row">
-	{forminput}
-	<table border=0 align="left" cellpadding=3>
-		<tr><td><input type="file" name="gigafile[0]"></td></tr>
-		<tr><td><input type="file" name="gigafile[1]"></td></tr>
-		<tr><td><input type="file" name="gigafile[2]"></td></tr>
-		<tr><td><input type="file" name="gigafile[3]"></td></tr>
-		<tr><td><input type="file" name="gigafile[4]"></td></tr>
-		<tr><td><input type="file" name="gigafile[5]"></td></tr>
-		<tr><td><input type="file" name="gigafile[6]"></td></tr>
-		<tr><td><input type="file" name="gigafile[7]"></td></tr>
-		<tr><td><input type="file" name="gigafile[8]"></td></tr>
-		<tr><td><input type="file" name="gigafile[9]"></td></tr>
-	</table>	
-	{/forminput}
-</div>
-*}
 
 {/if}

@@ -1,7 +1,7 @@
 <input type="hidden" id="giga_post_url" name="giga_post_url" value="{$smarty.server.PHP_SELF}" />
 <input type="hidden" id="gigasession" name="giga_session" value="{giga_session}" />
 
-<div class="row" id="gigablock">
+<div class="row" id="gigauploadblock">
 	{formlabel label="Upload Files"}
 	{forminput}
 		<div id="gigaslots"></div>
@@ -18,11 +18,5 @@
 		
 		<iframe name="gigaiframe" id="gigaiframe" style="border: 0;width:0px; height:0px;"></iframe>
 		
-	{/forminput}
-</div>
-
-<div class="row" id="gigaprogress" style="display: none;">
-	{forminput}
-	<div id="gigaprogressbar">wooo</div>
 	{/forminput}
 </div>

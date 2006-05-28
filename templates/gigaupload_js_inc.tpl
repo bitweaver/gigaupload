@@ -42,7 +42,7 @@ function startGigaUpload( pForm ) {
 	if( $('giga_progress_popup') ) {
 	    popUpWin(progressUrl+'?'+parameters,"standard",460,300);
 	} else {
-		hide('gigablock');
+		hide('uploadblock');
 		show('gigaprogress');
 		var pb = $("gigaprogressbar");
 		new Ajax.PeriodicalUpdater({},progressUrl,{

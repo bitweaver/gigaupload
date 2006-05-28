@@ -41,7 +41,9 @@ if( $gBitSystem->isPackageActive( GIGAUPLOAD_PKG_NAME ) ) {
 			parse_str($qstr, $_GIGAPOST);
 			if( !empty( $_GIGAPOST['gigafile'] ) ) {
 				$_FILES = $_GIGAPOST['gigafile'];
+				unset( $_GIGAPOST['gigafile'] );
 			}
+			$_REQUEST = array_merge( $_REQUEST, $_GIGAPOST );
 			unlink( $qStringFile );
 		}
 	}
