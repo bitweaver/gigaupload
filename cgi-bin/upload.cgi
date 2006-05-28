@@ -78,7 +78,7 @@ sub bye_bye {
 
 # see if we are within the allowed limit.
 # carp "$len > $max_upload\n";
-if($len > $CONFIG{'giga_max_upload'})
+if( $CONFIG{'giga_max_upload'} && $len > $CONFIG{'giga_max_upload'})
 {
 	close (STDIN);
 	bye_bye("The maximum upload size has been exceeded");
@@ -113,15 +113,23 @@ close(FH);
 # pass it though to a CGI instance later on.
 #
 $total_read = 0;
+$last_read = 0;
+$last_file = 'empty';
 $cgi = CGI->new(\&hook,$data);
 sub hook
 {
 	my ($filename, $buffer, $bRead, $data) = @_;
-	$total_read += $bRead;
+	if( $filename ne $last_file ) {
+		# handle multiple file uploads
+		$total_read += $last_read;
+		$last_file = $filename;
+	}
+	$last_read = $bRead;
+	$aggregate_read = $bRead + $total_read;
 #	carp  "Read $bRead bytes of $filename\n";         
 	open(TMP,">","$progress_file") or &bye_bye ("can't open progress file: $! : $progress_file");
 	flock(TMP, LOCK_EX);
-	print TMP $bRead;
+	print TMP $aggregate_read;
 	close TMP;
 	if( $CONFIG{'throttle_delay'} ) {
 		select(undef, undef, undef, $CONFIG{'throttle_delay'});	# sleep for fraction of a second. will throttle connection
@@ -146,6 +154,8 @@ my $j=0;
 while(($key,$value) = each %vars)
 {
 	$file_upload = $cgi->param($key);
+carp "$key => ";
+carp $value;	
 	if(defined $value && $value ne '') {
 		my $fh = $cgi->upload($key);
 		if(defined $fh) {

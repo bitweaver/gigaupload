@@ -35,12 +35,14 @@ if( $gBitSystem->isPackageActive( GIGAUPLOAD_PKG_NAME ) ) {
 	if( !empty( $_REQUEST['giga_post'] ) && !empty( $_REQUEST['giga_session'] ) ) {
 		$gigaConfig = get_gigaupload_config();
 		$qStringFile = $gigaConfig['giga_tmp_dir'].'/'.$_REQUEST['giga_session']."_qstring";
-		$qstr = join( "", file( $qStringFile ) );
-		$_GIGAPOST = array();
-		parse_str($qstr, $_GIGAPOST);
-	
-		if( !empty( $_GIGAPOST['gigafile'] ) ) {
-			$_FILES = $_GIGAPOST['gigafile'];
+		if( file_exists( $qStringFile ) ) {
+			$qstr = join( "", file( $qStringFile ) );
+			$_GIGAPOST = array();
+			parse_str($qstr, $_GIGAPOST);
+			if( !empty( $_GIGAPOST['gigafile'] ) ) {
+				$_FILES = $_GIGAPOST['gigafile'];
+			}
+			unlink( $qStringFile );
 		}
 	}
 	

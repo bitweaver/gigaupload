@@ -25,13 +25,10 @@
 
 	$percentDone = 0;
 	$totalSize = file_exists( $infoFile ) ? file_get_contents( $infoFile ) : 0;
-	$startTime = !empty( $_GET['start_time'] ) ? $_GET['start_time'] : 0;
+	$startTime = file_exists( $infoFile ) ? filemtime( $infoFile ) : 0;
 	$timeNow = time();
 
 	if( $totalSize > 0 ) {
-		if ($startTime == 0) {
-			$startTime = $timeNow;
-		}
 		$timeElapsed = $timeNow - $startTime;
 		if ($timeElapsed == 0) {
 			$timeElapsed = 1;
@@ -43,7 +40,6 @@
 		if ($speed == 0) {
 			$speed = 1024;
 		}
-
 		$gBitSmarty->assign( 'kbitSpeed', sprintf("%.2f",$speed) );		
 		$gBitSmarty->assign( 'speed', $speed );		
 		$gBitSmarty->assign( 'startTime', $startTime );

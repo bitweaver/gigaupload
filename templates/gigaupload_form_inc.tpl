@@ -4,10 +4,10 @@
 <div class="row" id="gigablock">
 	{formlabel label="Upload Files"}
 	{forminput}
-		<input name="gigaupload[]" type="file" /><br />
-		<input name="gigaupload[]" type="file" /><br />
-		<input name="gigaupload[]" type="file" /><br />
 		<div id="gigaslots"></div>
+		<input name="gigaupload[2]" type="file" /><br />
+		<input name="gigaupload[1]" type="file" /><br />
+		<input name="gigaupload[0]" type="file" /><br />
 		<input type="button" value="{tr}Add upload slot{/tr}" onclick="addUploadSlot();" /><br /><br />
 		<br />
 		{if $gBitSystem->isFeatureActive( 'xupload_use_popup' )}

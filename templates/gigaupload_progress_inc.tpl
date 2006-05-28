@@ -11,8 +11,10 @@
 		<div style="width:{$percentDone}%;background:red" class="gigaprogressbar">&nbsp;</div>
 	</div>
 
+	<div style="clear:both">
 	Time Elapsed: {$timeElapsedStr}<br>
 	Time Remaining: {$timeRemainStr}
+	</div>
 	
 {else}
 	Waiting for file upload to begin...

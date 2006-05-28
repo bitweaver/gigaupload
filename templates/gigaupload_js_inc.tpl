@@ -35,7 +35,7 @@ function startGigaUpload( pForm ) {
 	disableSubmit('submitbutton');
     progressUrl = "{/literal}{$smarty.const.GIGAUPLOAD_PKG_URL}{literal}progress.php";
     iTotal = escape("-1");
-    parameters = "iTotal=" + iTotal + "&iRead=0" + "&iStatus=1" + "&giga_session="+$('gigasession').value +"&post_url={/literal}{$smarty.server.PHP_SELF}{literal}";
+    parameters = "&giga_session="+$('gigasession').value +"&post_url={/literal}{$smarty.server.PHP_SELF}{literal}";
 
     pForm.submit();
 
@@ -60,8 +60,10 @@ function startGigaUpload( pForm ) {
 	return false;
 }
 
+var slots = 3;
 function addUploadSlot() {
-	$('gigaslots').insertAdjacentHTML("afterEnd", '<input name="xupload[]" type="file"><br>');
+	$('gigaslots').insertAdjacentHTML("afterEnd", '<input name="gigaupload['+slots+']" type="file"><br>');
+	slots++;
 }
 
 function updateProgress(pb,req) {
