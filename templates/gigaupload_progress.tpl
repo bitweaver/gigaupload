@@ -1,15 +1,15 @@
 <html>
- <head>
-  <title>Progress Bar</title>
- </head>
+<head>
+<title>File Upload Progress</title>
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE" />
+{if $percentDone < 100}
+<meta http-equiv="refresh" content="1;{$smarty.server.PHP_SELF}?total_size={$totalSize}&amp;start_time={$startTime}&amp;giga_session={$smarty.request.giga_session}" />
+{/if}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
 
-<frameset rows="*,120" scroll="none">
-	<frame src="{$link}">
-	<frame src="{$smarty.const.GIGAUPLOAD_PKG_URL}sponser.php">
-</frameset>
+{include file="bitpackage:gigaupload/gigaupload_progress_inc.tpl"}
 
-<noframes>
- This is the progress bar window for the PHP mega upload. <a href="/php/progress.php">Follow this
- link</a> for the main page.
-</noframes>
+</body>
 </html>

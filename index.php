@@ -40,6 +40,8 @@ $gBitSmarty->assign( 'sid', $gBitUser->mUserId.'_'.md5(uniqid(rand())) );
  * http://www.radinks.com/
  */
 
+$gBitSmarty->assign( 'loadAjax', TRUE );
+
 if( !empty( $_FILES ) ) {
 	$gBitSmarty->assign( 'gigafiles', $_FILES );
 //	unlink( $qStringFile );
