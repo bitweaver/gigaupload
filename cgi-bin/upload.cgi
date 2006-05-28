@@ -58,10 +58,10 @@ while( <CONFIGFILE> ) {
 close( CONFIGFILE );
 
 # don't change the next few lines unless you have a very good reason to.
-$monitor_file = $CONFIG{'tmp_dir'}."/$sessionid"."_flength";
-$progress_file = $CONFIG{'tmp_dir'}."/$sessionid"."_fread";
-$signal_file = $CONFIG{'tmp_dir'}."/$sessionid"."_signal";
-$qstring_file = $CONFIG{'tmp_dir'}."/$sessionid"."_qstring";
+$monitor_file = $CONFIG{'giga_tmp_dir'}."/$sessionid"."_flength";
+$progress_file = $CONFIG{'giga_tmp_dir'}."/$sessionid"."_fread";
+$signal_file = $CONFIG{'giga_tmp_dir'}."/$sessionid"."_signal";
+$qstring_file = $CONFIG{'giga_tmp_dir'}."/$sessionid"."_qstring";
 
 $content_type = $ENV{'CONTENT_TYPE'};
 my $len = $ENV{'CONTENT_LENGTH'};
@@ -78,7 +78,7 @@ sub bye_bye {
 
 # see if we are within the allowed limit.
 # carp "$len > $max_upload\n";
-if($len > $CONFIG{'max_upload'})
+if($len > $CONFIG{'giga_max_upload'})
 {
 	close (STDIN);
 	bye_bye("The maximum upload size has been exceeded");
@@ -158,10 +158,12 @@ while(($key,$value) = each %vars)
 
 			$fsize =(-s $fh);
 
+			$type = $cgi->uploadInfo($fh)->{'Content-Type'};
+
 			$fh =~ s/([^a-zA-Z0-9_\-.])/uc sprintf("%%%02x",ord($1))/eg;
 			$tmp_filename =~ s/([^a-zA-Z0-9_\-.])/uc sprintf("%%%02x",ord($1))/eg;
 			$qstring .= "gigafile[name][$j]=$fh&gigafile[size][$j]=$fsize&";
-			$qstring .= "gigafile[tmp_name][$j]=$tmp_filename&";
+			$qstring .= "gigafile[tmp_name][$j]=$tmp_filename&gigafile[mime_type][$j]=$type&";
 			$j++;
 		} else {
 			$value =~ s/([^a-zA-Z0-9_\-.])/uc sprintf("%%%02x",ord($1))/eg;
@@ -170,9 +172,12 @@ while(($key,$value) = each %vars)
 	}
 }
 
+my $postUrl = $cgi->param('giga_post_url') || $CONFIG{'giga_post_url'};
 
-my $url = $CONFIG{'post_url'} . "?sid=$sessionid";
-
+if( !$postUrl ) {
+	$postUrl = $ENV{REQUEST_URI};
+	$postUrl =~ s/cgi-bin\/upload\.cgi//g;
+}
 
 open (SIGNAL,">", $signal_file);
 print SIGNAL "\n";
@@ -182,6 +187,6 @@ open (QSTR,">", "$qstring_file") or die "can't open output file";
 print QSTR $qstring;
 close (QSTR);
 
-print "Location: $url\n\n";
+print "Location: $postUrl?giga_post=1&giga_session=$sessionid\n\n";
 
 exit;

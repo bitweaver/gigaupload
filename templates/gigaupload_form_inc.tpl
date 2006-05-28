@@ -37,7 +37,7 @@ function startGigaUpload()
     baseUrl = "{/literal}{$smarty.const.GIGAUPLOAD_PKG_URL}{literal}progress.php";
     iTotal = escape("-1");
     baseUrl += "?iTotal=" + iTotal + "&iRead=0" + "&iStatus=1";
-    baseUrl += "&sessionid={/literal}{gigaupload_id}{literal}";
+    baseUrl += "&giga_session="+$('gigasession').value;
 
     popUpWin(baseUrl,"standard",460,300);
     document.forms[0].submit();

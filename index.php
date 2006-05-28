@@ -40,19 +40,12 @@ $gBitSmarty->assign( 'sid', $gBitUser->mUserId.'_'.md5(uniqid(rand())) );
  * http://www.radinks.com/
  */
 
-if( !empty( $_REQUEST['sid'] ) ) {
-	$qStringFile = "/tmp/php/gigaupload/".$_REQUEST['sid']."_qstring";
-	$qstr = join( "", file( $qStringFile ) );
-	$_GIGAPOST = array();
-	parse_str($qstr, $_GIGAPOST);
-
-	if( !empty( $_GIGAPOST['gigafile'] ) ) {
-		$gBitSmarty->assign( 'gigafiles', $_GIGAPOST['gigafile'] );
-	}
+if( !empty( $_FILES ) ) {
+	$gBitSmarty->assign( 'gigafiles', $_FILES );
 //	unlink( $qStringFile );
 }
 
-$gBitSmarty->assign( 'action', $gBitSystem->getConfig( 'gigaupload_cgi_url', GIGAUPLOAD_PKG_URL.'cgi-bin/' ).'upload.cgi?session_id='.get_gigaupload_id() );
+$gBitSmarty->assign( 'action', $gBitSystem->getConfig( 'gigaupload_cgi_url', GIGAUPLOAD_PKG_URL.'cgi-bin/' ).'upload.cgi?session_id='.get_giga_session_id() );
 $gBitSystem->display( 'bitpackage:gigaupload/gigaupload_generic.tpl', 'Upload Files' );
 
 	//include("../inc/head.php");

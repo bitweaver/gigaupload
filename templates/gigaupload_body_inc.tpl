@@ -1,3 +1,5 @@
+<input type="hidden" id="gigasession" name="giga_session" value="{giga_session}" />
+
 <div class="row">
 	{formlabel label="Upload Files"}
 	{forminput}
@@ -12,7 +14,7 @@
 		{else}
 			<input type="hidden" name="inline" id="inline" />
 		{/if}
-		<input type="hidden" id="url_post" name="url_post" value="{$smarty.server.PHP_SELF}" />
+		<input type="hidden" id="giga_post_url" name="giga_post_url" value="{$smarty.server.PHP_SELF}" />
 		<div id="gigauploadinline"></div>
 		</div>
 	{/forminput}

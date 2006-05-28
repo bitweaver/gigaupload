@@ -1,11 +1,15 @@
 {include file="bitpackage:gigaupload/gigaupload_form_inc.tpl"}
 
-<h2>File uploader</h2>
+<h1>File uploader</h1>
 
+{if $gigafiles}
+Files Uploaded:
+<ol class="data">
 {section name=ix loop=$gigafiles.size|count}
-<div>{$gigafiles.name[ix]}<br/>{$gigafiles.size[ix]}</div>
+	<li class="item">{$gigafiles.name[ix]} / {$gigafiles.size[ix]} bytes / {$gigafiles.mime_type[ix]} </li>
 {/section}
-
+</ol>
+{/if}
 
 {if $gBitSystem->isPackageActive( 'gigaupload' )}
 	{include file="bitpackage:gigaupload/gigaupload_form_inc.tpl"}
@@ -20,13 +24,13 @@ specially if you are on a high speed connection.
 </p>
 
 
-{form onSubmit=$onsubmit action=$action enctype="multipart/form-data" id=gigauploadform 
+{form onSubmit=$onsubmit action=$action enctype="multipart/form-data" id=$id 
 legend=$gigauploadLegend|default:"Upload Files"}
 <div id="uploadform">
 	{include file="bitpackage:gigaupload/gigaupload_body_inc.tpl"}
 	
 	<div class="row submit">
-			<input type="submit" id="submitbutton" value="Upload">
+		<input type="submit" id="submitbutton" value="Upload">
 	</div>
 </div>
 {/form}

@@ -7,12 +7,11 @@
 
 	require_once( '../bit_setup_inc.php' );
 
-	$GIGA_CONFIG = get_gigaupload_config();
+	$gigaConfig = get_gigaupload_config();
 
-	$infoFile = $GIGA_CONFIG['tmp_dir']."/".$_REQUEST['sessionid']."_flength";
-	$progressFile = $GIGA_CONFIG['tmp_dir']."/".$_REQUEST['sessionid']."_fread";
-	$signalFile = $GIGA_CONFIG['tmp_dir']."/".$_REQUEST['sessionid']."_signal";
-
+	$infoFile = $gigaConfig['giga_tmp_dir']."/".$_REQUEST['giga_session']."_flength";
+	$progressFile = $gigaConfig['giga_tmp_dir']."/".$_REQUEST['giga_session']."_fread";
+	$signalFile = $gigaConfig['giga_tmp_dir']."/".$_REQUEST['giga_session']."_signal";
 	function hms($sec) {
 		$thetime = str_pad(intval(intval($sec) / 3600),2,"0",STR_PAD_LEFT).":". str_pad(intval(($sec / 60) % 60),2,"0",STR_PAD_LEFT).":". str_pad(intval($sec % 60),2,"0",STR_PAD_LEFT) ;
 		return $thetime;
@@ -23,7 +22,6 @@
 	$total_size = file_exists( $infoFile ) ? file_get_contents( $infoFile ) : 0;
 	$start_time = !empty( $_GET['start_time'] ) ? $_GET['start_time'] : 0;
 	$time_now = time();
-	$sessionid = $_GET['sessionid'];
 
 	if ($total_size == 0) {
 		$started = FALSE;
@@ -50,6 +48,7 @@
 	header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); // always modified
 	header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
 	header("Pragma: no-cache"); // HTTP/1.0
+
 ?>
 <html><head>
 <title>File Upload Progress</title>
@@ -57,7 +56,7 @@
 <?
 	if( $percent_done < 100 ) {
 ?>
-<meta http-equiv="refresh" content="1;<? echo $_SERVER['PHP_SELF']; ?>?total_size=<? echo $total_size; ?>&start_time=<? echo $start_time; ?>&sessionid=<? echo $sessionid; ?>">
+<meta http-equiv="refresh" content="1;<? echo $_SERVER['PHP_SELF']; ?>?total_size=<? echo $total_size; ?>&start_time=<? echo $start_time; ?>&giga_session=<? echo $_REQUEST['giga_session']; ?>">
 <?
 	}
 ?>
