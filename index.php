@@ -40,7 +40,7 @@ $gBitSmarty->assign( 'sid', $gBitUser->mUserId.'_'.md5(uniqid(rand())) );
  * http://www.radinks.com/
  */
 
-setupGigaUpload( GIGAUPLOAD_PKG_URL );
+gigapload_smarty_setup( GIGAUPLOAD_PKG_URL );
 if( !empty( $_FILES ) ) {
 	$gBitSmarty->assign( 'gigafiles', $_FILES );
 }
