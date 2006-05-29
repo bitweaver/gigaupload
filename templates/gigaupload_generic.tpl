@@ -3,8 +3,8 @@
 {if $gigafiles}
 Files Uploaded:
 <ol class="data">
-{section name=ix loop=$gigafiles.size|count}
-	<li class="item">{$gigafiles.name[ix]} / {$gigafiles.size[ix]} bytes / {$gigafiles.mime_type[ix]} </li>
+{section name=ix loop=$gigafiles}
+	<li class="item">{$gigafiles[ix].name} / {$gigafiles[ix].size} bytes / {$gigafiles[ix].type} </li>
 {/section}
 </ol>
 {/if}

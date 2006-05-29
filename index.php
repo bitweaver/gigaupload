@@ -44,7 +44,6 @@ $gBitSmarty->assign( 'loadAjax', TRUE );
 
 if( !empty( $_FILES ) ) {
 	$gBitSmarty->assign( 'gigafiles', $_FILES );
-//	unlink( $qStringFile );
 }
 
 $gBitSmarty->assign( 'action', $gBitSystem->getConfig( 'gigaupload_cgi_url', GIGAUPLOAD_PKG_URL.'cgi-bin/' ).'upload.cgi?giga_session='.get_giga_session_id() );
