@@ -37,8 +37,8 @@ use Carp;
 
 @qstring=split(/&/,$ENV{'QUERY_STRING'});
 @p1 = split(/=/,$qstring[0]);
-$sessionid = $p1[1];
-$sessionid =~ s/[^-a-zA-Z0-9_]//g;  # sanitized as suggested by Terrence Johnson.
+$giga_session = $p1[1];
+$giga_session =~ s/[^-a-zA-Z0-9_]//g;  # sanitized as suggested by Terrence Johnson.
 
 $path = $ENV{SCRIPT_FILENAME};
 $path =~ s/upload\.cgi//g;
@@ -58,10 +58,10 @@ while( <CONFIGFILE> ) {
 close( CONFIGFILE );
 
 # don't change the next few lines unless you have a very good reason to.
-$monitor_file = $CONFIG{'giga_tmp_dir'}."/$sessionid"."_flength";
-$progress_file = $CONFIG{'giga_tmp_dir'}."/$sessionid"."_fread";
-$signal_file = $CONFIG{'giga_tmp_dir'}."/$sessionid"."_signal";
-$qstring_file = $CONFIG{'giga_tmp_dir'}."/$sessionid"."_qstring";
+$monitor_file = $CONFIG{'giga_tmp_dir'}."/$giga_session"."_flength";
+$progress_file = $CONFIG{'giga_tmp_dir'}."/$giga_session"."_fread";
+$signal_file = $CONFIG{'giga_tmp_dir'}."/$giga_session"."_signal";
+$qstring_file = $CONFIG{'giga_tmp_dir'}."/$giga_session"."_qstring";
 
 $content_type = $ENV{'CONTENT_TYPE'};
 my $len = $ENV{'CONTENT_LENGTH'};
@@ -147,12 +147,14 @@ sub hook
 # giving the raw post data (which contains the 'bodies' of the
 # files), we just send a list of file names.
 #
+my $postActionUrl = 0;
 my $qstring="";
 my %vars = $cgi->Vars;
 my $j=0;
 
 while(($key,$value) = each %vars)
 {
+	# carp "$key => $value";
 	$file_upload = $cgi->param($key);
 	if(defined $value && $value ne '') {
 		my $fh = $cgi->upload($key);
@@ -189,12 +191,12 @@ close (QSTR);
 open (SIGNAL,">", $signal_file);
 print SIGNAL "\n";
 close (SIGNAL);
-
+carp $postActionUrl;
 #my $postUrl = $cgi->param('giga_post_url') || $CONFIG{'giga_post_url'};
-#if( !$postUrl ) {
+if( $cgi->param( 'giga_post_action' ) ) {
 #	$postUrl = $ENV{REQUEST_URI};
 #	$postUrl =~ s/cgi-bin\/upload\.cgi//g;
-#}
-#print "Location: $postUrl?giga_post=1&giga_session=$sessionid\n\n";
+	print "Location: ".$cgi->param( 'giga_post_action' )."?giga_post=1&giga_session=".$giga_session."\n\n";
+}
 
 exit;

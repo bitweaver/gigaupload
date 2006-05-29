@@ -1,5 +1,6 @@
 <input type="hidden" id="giga_post_url" name="giga_post_url" value="{$smarty.server.PHP_SELF}" />
 <input type="hidden" id="gigasession" name="giga_session" value="{giga_session}" />
+{$gigaPostAction}
 
 <div class="row" id="gigauploadblock">
 	{formlabel label="Upload Files"}
@@ -15,8 +16,6 @@
 		{else}
 			<input type="hidden" name="inline" id="inline" />
 		{/if}
-		
-		<iframe name="gigaiframe" id="gigaiframe" style="border: 0;width:0px; height:0px;"></iframe>
 		
 	{/forminput}
 </div>

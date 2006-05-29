@@ -1,5 +1,6 @@
 {if $signalExists}
 <script type="text/javascript">
+	stopProgress();
 	parent.location.href="{$postUrl|default:$smarty.server.PHP_SELF}"+"?giga_post=1&giga_session={$smarty.request.giga_session}";
 </script>
 {elseif $currentSize}

@@ -8,6 +8,28 @@ $gBitSystem->registerPackage( $registerHash );
 
 if( $gBitSystem->isPackageActive( GIGAUPLOAD_PKG_NAME ) ) {
 
+	function setupGigaUpload( $pPostUrl ) {
+		global $gBitSmarty, $gBitSystem, $gSniffer;
+		$gigaAction = $gBitSystem->getConfig( 'gigaupload_cgi_url', GIGAUPLOAD_PKG_URL.'cgi-bin/' ).'upload.cgi?giga_session='.get_giga_session_id();
+		// To ajax or not...
+		switch( $gSniffer->_browser_info['browser'] == 'mz' ) {
+			case 'mz':
+			case 'ff':
+			case 'ie':
+				$gBitSmarty->assign( 'loadAjax', TRUE );
+				$gBitSmarty->assign( 'onSubmit', "return startGigaUpload(this);" );
+				$gBitSmarty->assign( 'target', "gigaiframe" );
+				break;
+			default:
+				$gBitSmarty->assign( 'submitClick', "return startGigaUpload(this.form);" );
+				$gBitSmarty->assign( 'gigaPopup', '<input type="hidden" name="giga_progress_popup" id="gigaprogresspopup" value="1" />' );
+				$gBitSmarty->assign( 'gigaPostAction', '<input type="hidden" name="giga_post_action" id="gigapostaction" value="'.$pPostUrl.'" />' );
+				break;
+		}
+		$gBitSmarty->assign( 'id', 'gigauploadform' );
+		$gBitSmarty->assign( 'action', $gigaAction );
+	}
+
 	function get_gigaupload_config() {
 		global $gBitSystem;
 		$ret = array();

@@ -11,10 +11,6 @@ Files Uploaded:
 
 {if $gBitSystem->isPackageActive( 'gigaupload' )}
 	{include file="bitpackage:gigaupload/gigaupload_js_inc.tpl"}
-	{assign var=id value="gigauploadform"}
-	{assign var=onsubmit value="return startGigaUpload(this);"}
-	{assign var=target value="gigaiframe"}
-
 <p>
 Use this form to upload some files and check out the functionality of the uploader.
 </p>
@@ -23,8 +19,9 @@ specially if you are on a high speed connection.
 </p>
 
 
-{form onSubmit=$onsubmit action=$action enctype="multipart/form-data" id=$id target=$target legend=$gigauploadLegend|default:"Upload Files"}
+{form onsubmit=$onSubmit action=$action enctype="multipart/form-data" id=$id target=$target legend=$gigauploadLegend|default:"Upload Files"}
 <div id="uploadform">
+	{$gigaPopup}
 
 	<div id="uploadblock">
 	{include file="bitpackage:gigaupload/gigaupload_form_inc.tpl"}
@@ -33,7 +30,7 @@ specially if you are on a high speed connection.
 	{include file="bitpackage:gigaupload/gigaupload_progress_container_inc.tpl"}
 	
 	<div class="row submit">
-		<input type="submit" id="submitbutton" value="Upload">
+		<input type="submit" id="submitbutton" value="Upload" {if $submitClick}onclick="{$submitClick}"{/if}/>
 	</div>
 </div>
 {/form}

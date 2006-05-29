@@ -1,3 +1,6 @@
+
+<iframe name="gigaiframe" id="gigaiframe" style="border: 0;width:0px; height:0px;"></iframe>
+
 <script type="text/javascript">
 /* <![CDATA[ */
 {literal}
@@ -30,22 +33,20 @@ if(typeof HTMLElement!="undefined" && !HTMLElement.prototype.insertAdjacentEleme
 	}
 }
 // end fix
-
+var pu = null;
 function startGigaUpload( pForm ) {
 	disableSubmit('submitbutton');
     progressUrl = "{/literal}{$smarty.const.GIGAUPLOAD_PKG_URL}{literal}progress.php";
-    iTotal = escape("-1");
     parameters = "&giga_session="+$('gigasession').value +"&post_url={/literal}{$smarty.server.PHP_SELF}{literal}";
+	pForm.submit();
 
-    pForm.submit();
-
-	if( $('giga_progress_popup') ) {
-	    popUpWin(progressUrl+'?'+parameters,"standard",460,300);
+	hide('uploadblock');
+	if( $('gigaprogresspopup') ) {
+	    popUpWin(progressUrl+'?'+parameters,"standard",460,200);
 	} else {
-		hide('uploadblock');
 		show('gigaprogress');
 		var pb = $("gigaprogressbar");
-		new Ajax.PeriodicalUpdater({},progressUrl,{
+		pu = new Ajax.PeriodicalUpdater({},progressUrl,{
 			'decay': 2,
 			'frequency' : 0.5,
 			'method': 'post',
@@ -56,8 +57,7 @@ function startGigaUpload( pForm ) {
 			}
 		)
 	}
-
-	return false;
+	return true;
 }
 
 var slots = 3;
@@ -69,6 +69,12 @@ function addUploadSlot() {
 function updateProgress(pb,req) {
 		pb.innerHTML=req.responseText;
 //		parent.location.href={/literal}"{$postUrl|default:$smarty.server.PHP_SELF}" + "?giga_post=1&giga_session={$smarty.request.giga_session}{literal}";
+}
+
+function stopProgress() {
+	if( pu ) {
+		pu.stop();
+	}
 }
 
 function updateFailure(pb,req) {

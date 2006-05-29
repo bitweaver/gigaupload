@@ -40,13 +40,11 @@ $gBitSmarty->assign( 'sid', $gBitUser->mUserId.'_'.md5(uniqid(rand())) );
  * http://www.radinks.com/
  */
 
-$gBitSmarty->assign( 'loadAjax', TRUE );
-
+setupGigaUpload( GIGAUPLOAD_PKG_URL );
 if( !empty( $_FILES ) ) {
 	$gBitSmarty->assign( 'gigafiles', $_FILES );
 }
 
-$gBitSmarty->assign( 'action', $gBitSystem->getConfig( 'gigaupload_cgi_url', GIGAUPLOAD_PKG_URL.'cgi-bin/' ).'upload.cgi?giga_session='.get_giga_session_id() );
 $gBitSystem->display( 'bitpackage:gigaupload/gigaupload_generic.tpl', 'Upload Files' );
 
 	//include("../inc/head.php");
