@@ -191,7 +191,6 @@ close (QSTR);
 open (SIGNAL,">", $signal_file);
 print SIGNAL "\n";
 close (SIGNAL);
-carp $postActionUrl;
 #my $postUrl = $cgi->param('giga_post_url') || $CONFIG{'giga_post_url'};
 if( $cgi->param( 'giga_post_action' ) ) {
 #	$postUrl = $ENV{REQUEST_URI};
