@@ -40,7 +40,7 @@
 		if ($speed == 0) {
 			$speed = 1024;
 		}
-		$gBitSmarty->assign( 'kbitSpeed', sprintf("%.2f",$speed) );		
+		$gBitSmarty->assign( 'kbitSpeed', round($speed / 1000) );		
 		$gBitSmarty->assign( 'speed', $speed );		
 		$gBitSmarty->assign( 'startTime', $startTime );
 		$gBitSmarty->assign( 'percentDone', $percentDone );
