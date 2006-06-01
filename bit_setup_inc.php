@@ -15,7 +15,6 @@ if( $gBitSystem->isPackageActive( GIGAUPLOAD_PKG_NAME ) ) {
 		switch( $gSniffer->_browser_info['browser'] ) {
 			case 'mz':
 			case 'ff':
-			case 'ie':
 				$gBitSmarty->assign( 'loadAjax', TRUE );
 				$gBitSmarty->assign( 'onSubmit', "return startGigaUpload(this);" );
 				$gBitSmarty->assign( 'target', "gigaiframe" );

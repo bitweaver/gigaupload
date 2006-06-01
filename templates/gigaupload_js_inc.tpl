@@ -48,7 +48,7 @@ function startGigaUpload( pForm ) {
 		var pb = $("gigaprogressbar");
 		pu = new Ajax.PeriodicalUpdater({},progressUrl,{
 			'decay': 2,
-			'frequency' : 0.5,
+			'frequency' : 3,
 			'method': 'post',
 			'parameters': parameters,
 			'evalScripts': true,
