@@ -1,5 +1,5 @@
 
-# Bitweaver Notes:
+# gigaupload installation notes:
 
 Please consult cgi-bin/config.sample.cgi for a sample configuration. Save
 your copy as cgi-bin/config.gci
@@ -20,4 +20,13 @@ take effect and will enable all the CGI requirements for you.
 make sure the files in gigaupload/cgi-bin/ are execuable by apache. easiest way of
 doing this is by: chmod -R 777 gigaupload/cgi-bin/
 
+# Rename gigaupload/ dir
+If you want to rename the gigaupload/ direcotry to something else, please edit
+this line:
+$gExclusiveScan = array( 'kernel', 'users', 'gigaupload' );
+and edit the 'gigaupload' entry to match your new directory name
+e.g.: if you rename the gigaupload/ to upload/
+$gExclusiveScan = array( 'kernel', 'users', 'upload' );
+
 good luck!
+

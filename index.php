@@ -28,12 +28,12 @@
 require_once( '../bit_setup_inc.php' );
 
 $gBitSmarty->assign( 'sid', $gBitUser->mUserId.'_'.md5(uniqid(rand())) );
-/*
- * if your php installation cannot produce md5 hashes delete the above line and
- * uncomment the line below.
- *
- * $sid = urlencode(uniqid(rand()));
- */
+	/*
+	 * if your php installation cannot produce md5 hashes delete the above line and
+	 * uncomment the line below.
+	 *
+	 * $sid = urlencode(uniqid(rand()));
+	 */
 
 /*
  * improved user interface contributed by Rad Inks
@@ -47,5 +47,6 @@ if( !empty( $_FILES ) ) {
 
 $gBitSystem->display( 'bitpackage:gigaupload/generic.tpl', 'Upload Files' );
 
-//include("../inc/head.php");
+	//include("../inc/head.php");
+
 ?>

@@ -16,15 +16,13 @@
 
 	{form onsubmit=$onSubmit action=$action enctype="multipart/form-data" id=$id target=$target legend=$gigauploadLegend|default:"Upload Files"}
 		<div id="uploadform">
+			{$gigaPopup}
+
 			<div id="uploadblock">
 				{include file="bitpackage:gigaupload/form_inc.tpl"}
 			</div>
 			
-			<div class="row" id="gigaprogress" style="display: none;">
-				{forminput}
-					<div id="gigaprogressbar"></div>
-				{/forminput}
-			</div>
+			{include file="bitpackage:gigaupload/progress_container_inc.tpl"}
 			
 			<div class="row submit">
 				<input type="submit" id="submitbutton" value="Upload" {if $submitClick}onclick="{$submitClick}"{/if}/>
