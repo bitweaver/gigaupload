@@ -160,8 +160,7 @@ while(($key,$value) = each %vars)
 		my $fh = $cgi->upload($key);
 		if(defined $fh) {
 			#carp $fh;
-			($tmp_fh, $tmp_filename) = tempfile();
-
+			($tmp_fh, $tmp_filename) = tempfile( $giga_session."_XXXXXXXXX", DIR => $CONFIG{'giga_tmp_dir'} );
 			while(<$fh>) {
 				print $tmp_fh $_;
 			}
@@ -170,8 +169,8 @@ while(($key,$value) = each %vars)
 
 			$fsize =(-s $fh);
 
-			$type = $cgi->uploadInfo($fh)->{'Content-Type'};
-
+			chomp( $type = `file -bi $tmp_filename` );
+carp( $type );
 			$fh =~ s/([^a-zA-Z0-9_\-.])/uc sprintf("%%%02x",ord($1))/eg;
 			$tmp_filename =~ s/([^a-zA-Z0-9_\-.])/uc sprintf("%%%02x",ord($1))/eg;
 			$qstring .= "gigafile[$j][name]=$fh&gigafile[$j][size]=$fsize&";
