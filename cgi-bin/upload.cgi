@@ -32,6 +32,7 @@
 
 use CGI;
 use Fcntl qw(:DEFAULT :flock);
+use File::Basename;
 use File::Temp qw/ tempfile tempdir /;
 use Carp;
 
@@ -164,14 +165,11 @@ while(($key,$value) = each %vars)
 			while(<$fh>) {
 				print $tmp_fh $_;
 			}
-
 			close($tmp_fh);
-
 			$fsize =(-s $fh);
-
 			chomp( $type = `file -bi $tmp_filename` );
-carp( $type );
 			$fh =~ s/([^a-zA-Z0-9_\-.])/uc sprintf("%%%02x",ord($1))/eg;
+			$fh = basename( $fh );
 			$tmp_filename =~ s/([^a-zA-Z0-9_\-.])/uc sprintf("%%%02x",ord($1))/eg;
 			$qstring .= "gigafile[$j][name]=$fh&gigafile[$j][size]=$fsize&";
 			$qstring .= "gigafile[$j][tmp_name]=$tmp_filename&gigafile[$j][type]=$type&";

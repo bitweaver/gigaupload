@@ -5,9 +5,7 @@
  */
 	// Edit these to wherever your temporary files are stored.
 
-	// only load necessary packages to reduce load
-	$gExclusiveScan = array( 'kernel', 'users', 'gigaupload' );
-
+	$gExclusiveScan = array( 'kernel', 'users', 'themes', 'gigaupload', 'upload' );
 	require_once( '../bit_setup_inc.php' );
 
 	$gigaConfig = get_gigaupload_config();
@@ -31,7 +29,7 @@
 	$startTime = file_exists( $infoFile ) ? filemtime( $infoFile ) : 0;
 	$timeNow = time();
 
-	if( $totalSize > 0 ) {
+	if( $totalSize > 0 && file_exists( $progressFile ) ) {
 		$timeElapsed = $timeNow - $startTime;
 		if ($timeElapsed == 0) {
 			$timeElapsed = 1;

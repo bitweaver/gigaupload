@@ -67,6 +67,12 @@ if( $gBitSystem->isPackageActive( GIGAUPLOAD_PKG_NAME ) ) {
 			}
 			$_REQUEST = array_merge( $_REQUEST, $_GIGAPOST );
 			unlink( $qStringFile );
+			foreach( array( 'fread', 'flength', 'signal' ) as $fileSuffix ) {
+				$file = $gigaConfig['giga_tmp_dir'].'/'.$_REQUEST['giga_session'].'_'.$fileSuffix;
+				if( file_exists( $file ) ) {
+					unlink( $file );
+				}
+			}
 		}
 	}
 	
