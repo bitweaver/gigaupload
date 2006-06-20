@@ -8,7 +8,7 @@ $gBitSystem->registerPackage( $registerHash );
 
 if( $gBitSystem->isPackageActive( GIGAUPLOAD_PKG_NAME ) ) {
 
-	function gigapload_smarty_setup( $pPostUrl ) {
+	function gigaupload_smarty_setup( $pPostUrl ) {
 		global $gBitSmarty, $gBitSystem, $gSniffer;
 		$gigaAction = $gBitSystem->getConfig( 'gigaupload_cgi_url', GIGAUPLOAD_PKG_URL.'cgi-bin/' ).'upload.cgi?giga_session='.get_giga_session_id();
 		// To ajax or not...
