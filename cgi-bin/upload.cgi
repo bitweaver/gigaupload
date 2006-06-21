@@ -35,6 +35,7 @@ use Fcntl qw(:DEFAULT :flock);
 use File::Basename;
 use File::Temp qw/ tempfile tempdir /;
 use Carp;
+use URI::Escape;
 
 @qstring=split(/&/,$ENV{'QUERY_STRING'});
 @p1 = split(/=/,$qstring[0]);
@@ -168,9 +169,12 @@ while(($key,$value) = each %vars)
 			close($tmp_fh);
 			$fsize =(-s $fh);
 			chomp( $type = `file -bi $tmp_filename` );
-			$fh =~ s/([^a-zA-Z0-9_\-.])/uc sprintf("%%%02x",ord($1))/eg;
-			$fh = basename( $fh );
-			$tmp_filename =~ s/([^a-zA-Z0-9_\-.])/uc sprintf("%%%02x",ord($1))/eg;
+			$fh = uri_unescape( $fh );
+			if ($fh =~ /([^\/\\]+)$/) {
+				$fh="$1";
+			}
+			$fh =~ s/([^-a-zA-Z0-9_.])/uc sprintf("%%%02x",ord($1))/eg;
+#carp( $fh );			
 			$qstring .= "gigafile[$j][name]=$fh&gigafile[$j][size]=$fsize&";
 			$qstring .= "gigafile[$j][tmp_name]=$tmp_filename&gigafile[$j][type]=$type&";
 			$j++;
