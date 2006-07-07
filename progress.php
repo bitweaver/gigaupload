@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * The progress bar in PHP was contributed by
  * Mike Hodgson
