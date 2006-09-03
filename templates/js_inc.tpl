@@ -1,5 +1,5 @@
 {* preload image *}
-{biticon ipackage=gigaupload iname=busy iexplain=Busy style="position:absolute; top:-500px; left:-500px;" iforce=icon}
+{biticon ipackage="icons" iname="busy" iexplain=Busy style="position:absolute; top:-500px; left:-500px;" iforce=icon}
 <iframe name="gigaiframe" id="gigaiframe" style="border: 0;width:0px; height:0px;"></iframe>
 
 <script type="text/javascript">

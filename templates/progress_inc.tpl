@@ -17,7 +17,7 @@
 	<br />
 
 	<p style="text-align:center;">
-		{biticon ipackage=gigaupload iname=busy iexplain=Busy iforce=icon}<br />{tr}Processing uploaded files. You should be redirected as soon as processing has been completed. If not, <a href="{$postUrl|default:$smarty.server.PHP_SELF}?giga_post=1&giga_session={$smarty.request.giga_session}"></a>{/tr}
+		{biticon ipackage="icons" iname="busy" iexplain=Busy iforce=icon}<br />{tr}Processing uploaded files. You should be redirected as soon as processing has been completed. If not, <a href="{$postUrl|default:$smarty.server.PHP_SELF}?giga_post=1&giga_session={$smarty.request.giga_session}"></a>{/tr}
 	</p>
 
 	<script type="text/javascript">
@@ -59,5 +59,5 @@
 		<div style="width:{$percentDone}%;background:#f80;padding:0.5em 0; text-align:center; font-weight:bold;" class="gigaprogressbar">{$percentDone}%</div>
 	</div>
 {else}
-	{biticon ipackage=gigaupload iname=busy iexplain=Busy iforce=icon} {tr}Waiting for file upload to begin&hellip;{/tr}
+	{biticon ipackage="icons" iname="busy" iexplain=Busy iforce=icon} {tr}Waiting for file upload to begin&hellip;{/tr}
 {/if}
