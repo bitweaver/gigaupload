@@ -41,11 +41,11 @@ function startGigaUpload( pForm ) {
     parameters = "&giga_session="+$('gigasession').value +"&post_url={/literal}{$smarty.server.PHP_SELF}{literal}";
 	pForm.submit();
 
-	hide('uploadblock');
+	hideById('uploadblock');
 	if( $('gigaprogresspopup') ) {
 	    popUpWin(progressUrl+'?'+parameters,"standard",460,200);
 	} else {
-		show('gigaprogress');
+		showById('gigaprogress');
 		var pb = $("gigaprogressbar");
 		pu = new Ajax.PeriodicalUpdater({},progressUrl,{
 			'decay': 2,
