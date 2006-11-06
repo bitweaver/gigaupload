@@ -9,7 +9,7 @@ make sure your temp directory is writable by apache
 The easiest way to get the CGI part working is by adding something like this:
 
 ScriptAlias /gigaupload/cgi-bin/ /var/www/html/bitweaver/gigaupload/cgi-bin/
-<dirrectory /var/www/html/bitweaver/gigaupload/cgi-bin>
+<directory /var/www/html/bitweaver/gigaupload/cgi-bin>
 	AllowOverride All
 </directory>
 
