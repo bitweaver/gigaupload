@@ -5,16 +5,16 @@
 <div class="row" id="gigauploadblock">
 	{formlabel label="Upload Files"}
 	{forminput}
-		<input size="35" name="gigaupload[9]" type="file" /><br />
-		<input size="35" name="gigaupload[8]" type="file" /><br />
-		<input size="35" name="gigaupload[7]" type="file" /><br />
-		<input size="35" name="gigaupload[6]" type="file" /><br />
-		<input size="35" name="gigaupload[5]" type="file" /><br />
-		<input size="35" name="gigaupload[4]" type="file" /><br />
-		<input size="35" name="gigaupload[3]" type="file" /><br />
-		<input size="35" name="gigaupload[2]" type="file" /><br />
-		<input size="35" name="gigaupload[1]" type="file" /><br />
-		<input size="35" name="gigaupload[0]" type="file" /><br />
+		<input size="35" name="9" type="file" /><br />
+		<input size="35" name="8" type="file" /><br />
+		<input size="35" name="7" type="file" /><br />
+		<input size="35" name="6" type="file" /><br />
+		<input size="35" name="5" type="file" /><br />
+		<input size="35" name="4" type="file" /><br />
+		<input size="35" name="3" type="file" /><br />
+		<input size="35" name="2" type="file" /><br />
+		<input size="35" name="1" type="file" /><br />
+		<input size="35" name="0" type="file" /><br />
 		<span id="newgigaslot"></span>
 		<input type="button" value="{tr}Add upload slot{/tr}" onclick="addUploadSlot();" /><br /><br />
 		<br />

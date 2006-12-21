@@ -175,8 +175,8 @@ while(($key,$value) = each %vars)
 			}
 			$fh =~ s/([^-a-zA-Z0-9_.])/uc sprintf("%%%02x",ord($1))/eg;
 #carp( $fh );			
-			$qstring .= "gigafile[$j][name]=$fh&gigafile[$j][size]=$fsize&";
-			$qstring .= "gigafile[$j][tmp_name]=$tmp_filename&gigafile[$j][type]=$type&";
+			$qstring .= "gigafile[$key][name]=$fh&gigafile[$key][size]=$fsize&";
+			$qstring .= "gigafile[$key][tmp_name]=$tmp_filename&gigafile[$key][type]=$type&";
 			$j++;
 		} else {
 			$value =~ s/([^a-zA-Z0-9_\-.])/uc sprintf("%%%02x",ord($1))/eg;

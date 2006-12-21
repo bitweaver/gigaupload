@@ -63,7 +63,7 @@ function startGigaUpload( pForm ) {
 
 var slots = 10;
 function addUploadSlot() {
-	$('newgigaslot').insertAdjacentHTML("afterEnd", '<input name="gigaupload['+slots+']" type="file"><br>');
+	$('newgigaslot').insertAdjacentHTML("afterEnd", '<input name="'+slots+'" type="file"><br>');
 	slots++;
 }
 
