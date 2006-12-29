@@ -42,16 +42,6 @@ if( $gBitSystem->isPackageActive( GIGAUPLOAD_PKG_NAME ) ) {
 		return $ret;
 	}
 	
-	function get_giga_session_id() {
-		global $gBitUser;
-		static $sessionId; // keep same sessionId so it can be used in multiple .tpl's easily
-		if( empty( $sessionId ) ) {
-			$sessionId = $gBitUser->mUserId.'_'.md5( uniqid( rand() ) );
-		}
-		return( $sessionId );
-	}
-	$gBitSmarty->register_function( 'giga_session', 'get_giga_session_id', FALSE );
-
 	// inline catch of gigaupload post, and manual stuffing of $_FILES
 	if( !empty( $_REQUEST['giga_post'] ) && !empty( $_REQUEST['giga_session'] ) ) {
 		$gigaConfig = get_gigaupload_config();
@@ -76,4 +66,17 @@ if( $gBitSystem->isPackageActive( GIGAUPLOAD_PKG_NAME ) ) {
 	}
 	
 }
+
+	// These need to be declared even if the package is disabled so templates that might use these will still compile. 
+	// They also have no code specific to gigaupload, so their declaration is harmless
+	function get_giga_session_id() {
+		global $gBitUser;
+		static $sessionId; // keep same sessionId so it can be used in multiple .tpl's easily
+		if( empty( $sessionId ) ) {
+			$sessionId = $gBitUser->mUserId.'_'.md5( uniqid( rand() ) );
+		}
+		return( $sessionId );
+	}
+
+	$gBitSmarty->register_function( 'giga_session', 'get_giga_session_id', FALSE );
 ?>
