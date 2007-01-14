@@ -4,7 +4,7 @@
 	<div class="row">
 		{formlabel label="Progress"}
 		{forminput}
-			{$currentSize|kbsize} / {$totalSize|kbsize}
+			{$currentSize|display_bytes} / {$totalSize|display_bytes}
 		{/forminput}
 	</div>
 
@@ -30,7 +30,7 @@
 	<div class="row">
 		{formlabel label="Progress"}
 		{forminput}
-			{$currentSize|kbsize} / {$totalSize|kbsize}
+			{$currentSize|display_bytes} / {$totalSize|display_bytes}
 		{/forminput}
 	</div>
 
