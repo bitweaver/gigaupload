@@ -1,7 +1,6 @@
 <?php
 
 // only load necessary packages to reduce load
-$gExclusiveScan = array( 'kernel', 'users', 'gigaupload' );
 require_once( '../bit_setup_inc.php' );
 
 

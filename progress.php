@@ -3,9 +3,6 @@
  * The progress bar in PHP was contributed by
  * Mike Hodgson
  */
-	// Edit these to wherever your temporary files are stored.
-
-	$gExclusiveScan = array( 'kernel', 'users', 'themes', 'gigaupload', 'upload' );
 	require_once( '../bit_setup_inc.php' );
 
 	$gigaConfig = get_gigaupload_config();
