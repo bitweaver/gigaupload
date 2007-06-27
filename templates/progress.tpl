@@ -4,7 +4,7 @@
 	{include file="bitpackage:themes/header_inc.tpl"}
 	<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE" />
 	{if !$signalExists}
-		<meta http-equiv="refresh" content="3;{$smarty.server.PHP_SELF}?total_size={$totalSize}&amp;start_time={$startTime}&amp;giga_session={$smarty.request.giga_session}&amp;post_url={$smarty.request.post_url}" />
+		<meta http-equiv="refresh" content="3;{$smarty.server.PHP_SELF}?total_size={$totalSize}&amp;start_time={$startTime}&amp;giga_session={$smarty.request.giga_session}&amp;started={$smarty.request.started}&amp;post_url={$smarty.request.post_url|escape:url}" />
 	{else}
 <script type="text/javascript">/*<![CDATA[*/
 	var postUrl = "{$postUrl|default:$smarty.server.PHP_SELF}"+"?giga_post=1&giga_session={$smarty.request.giga_session}";

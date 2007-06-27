@@ -27,6 +27,8 @@
 	$timeNow = time();
 
 	if( $totalSize > 0 && file_exists( $progressFile ) ) {
+		// flag lets popup progress know uploading has begun to prevent "waiting to begin" after upload is finished
+		$_REQUEST['started'] = TRUE;
 		$timeElapsed = $timeNow - $startTime;
 		if ($timeElapsed == 0) {
 			$timeElapsed = 1;
@@ -38,8 +40,7 @@
 		if ($speed == 0) {
 			$speed = 1024;
 		}
-		$gBitSmarty->assign( 'kbitSpeed', round($speed / 1000
-		) );		
+		$gBitSmarty->assign( 'kbitSpeed', round($speed / 1000) );		
 		$gBitSmarty->assign( 'speed', $speed );		
 		$gBitSmarty->assign( 'startTime', $startTime );
 		$gBitSmarty->assign( 'percentDone', $percentDone );
