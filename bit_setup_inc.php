@@ -15,6 +15,7 @@ if( $gBitSystem->isPackageActive( GIGAUPLOAD_PKG_NAME ) ) {
 			case 'mz':
 			case 'ff':
 			case 'op':
+			case 'ca':
 				$gBitSmarty->assign( 'loadAjax', 'prototype' );
 				$gBitSmarty->assign( 'onSubmit', "return startGigaUpload(this);" );
 				$gBitSmarty->assign( 'target', "gigaiframe" );
