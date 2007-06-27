@@ -47,14 +47,13 @@ function startGigaUpload( pForm ) {
 	} else {
 		showById('gigaprogress');
 		var pb = $("gigaprogressbar");
-		pu = new Ajax.PeriodicalUpdater({},progressUrl,{
+		pu = new Ajax.PeriodicalUpdater(pb,progressUrl,{
+			'asynchronous':true,
 			'decay': 2,
 			'frequency' : 3,
 			'method': 'post',
 			'parameters': parameters,
 			'evalScripts': true,
-			'onSuccess' : function(request){ updateProgress(pb,request) },
-			'onFailure':function(request){ updateFailure(pb,request) }
 			}
 		)
 	}
