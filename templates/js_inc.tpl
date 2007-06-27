@@ -53,7 +53,7 @@ function startGigaUpload( pForm ) {
 			'frequency' : 3,
 			'method': 'post',
 			'parameters': parameters,
-			'evalScripts': true,
+			'evalScripts': true
 			}
 		)
 	}
@@ -70,7 +70,6 @@ function updateProgress(pb,req) {
 		pb.innerHTML=req.responseText;
 //		parent.location.href={/literal}"{$postUrl|default:$smarty.server.PHP_SELF}" + "?giga_post=1&giga_session={$smarty.request.giga_session}{literal}";
 }
-
 function stopProgress() {
 	if( pu ) {
 		pu.stop();
