@@ -50,7 +50,7 @@
 		$gBitSmarty->assign( 'totalSize', $totalSize );
 	}
 	
-	if( $gBitSystem->isAjaxRequest() ) {
+	if( $gBitThemes->isAjaxRequest() ) {
 		print $gBitSmarty->fetch( 'bitpackage:gigaupload/progress_inc.tpl' );
 	} else {
 
