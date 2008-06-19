@@ -1,9 +1,20 @@
 <?php
-/*
- * The progress bar in PHP was contributed by
- * Mike Hodgson
+/**
+ * @version $Header: /cvsroot/bitweaver/_bit_gigaupload/progress.php,v 1.16 2008/06/19 04:24:52 lsces Exp $
+ *
+ * Copyright (c) 2007 bitweaver.org
+ * All Rights Reserved. See copyright.txt for details and a complete list of authors.
+ * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details
+ * @author Mike Hodgson
+ * 
+ * @package gigupload
+ * @subpackage functions
  */
-	require_once( '../bit_setup_inc.php' );
+
+/**
+ * required setup
+ */
+require_once( '../bit_setup_inc.php' );
 
 	$gigaConfig = get_gigaupload_config();
 

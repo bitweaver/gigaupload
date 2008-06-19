@@ -1,8 +1,20 @@
 <?php
+/**
+ * @version $Header: /cvsroot/bitweaver/_bit_gigaupload/progress_popup.php,v 1.5 2008/06/19 04:24:52 lsces Exp $
+ *
+ * Copyright (c) 2007 bitweaver.org
+ * All Rights Reserved. See copyright.txt for details and a complete list of authors.
+ * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details
+ * @author Mike Hodgson
+ * 
+ * @package gigupload
+ * @subpackage functions
+ */
 
-// only load necessary packages to reduce load
+/**
+ * required setup
+ */
 require_once( '../bit_setup_inc.php' );
-
 
 /*
  * Set upload start time
