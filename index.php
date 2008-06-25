@@ -45,7 +45,7 @@ if( !empty( $_FILES ) ) {
 	$gBitSmarty->assign( 'gigafiles', $_FILES );
 }
 
-$gBitSystem->display( 'bitpackage:gigaupload/generic.tpl', 'Upload Files' );
+$gBitSystem->display( 'bitpackage:gigaupload/generic.tpl', 'Upload Files' , array( 'display_mode' => 'display' ));
 
 	//include("../inc/head.php");
 
