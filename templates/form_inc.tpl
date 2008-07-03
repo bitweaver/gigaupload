@@ -3,20 +3,15 @@
 {$gigaPostAction}
 
 <div class="row" id="gigauploadblock">
-	{formlabel label="Upload Files"}
+	{formlabel label=$giga_label|default:"Upload Files"}
 	{forminput}
-		<input size="35" name="9" type="file" /><br />
-		<input size="35" name="8" type="file" /><br />
-		<input size="35" name="7" type="file" /><br />
-		<input size="35" name="6" type="file" /><br />
-		<input size="35" name="5" type="file" /><br />
-		<input size="35" name="4" type="file" /><br />
-		<input size="35" name="3" type="file" /><br />
-		<input size="35" name="2" type="file" /><br />
-		<input size="35" name="1" type="file" /><br />
-		<input size="35" name="0" type="file" /><br />
+		<input style="float:right" type="button" value="{tr}Add upload slot{/tr}" onclick="addUploadSlot();" />
+		{section name=foo loop=$giga_slot_count|default:10}
+		<input name="{$smarty.section.foo.iteration}" type="file" /><br />
+		{/section}
 		<span id="newgigaslot"></span>
-		<input type="button" value="{tr}Add upload slot{/tr}" onclick="addUploadSlot();" /><br /><br />
-		<br />
+		{if $giga_form_help}
+			{formhelp note=$giga_form_help}
+		{/if}
 	{/forminput}
 </div>
