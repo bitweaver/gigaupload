@@ -66,7 +66,7 @@ $signal_file = $CONFIG{'giga_tmp_dir'}."/$giga_session"."_signal";
 $qstring_file = $CONFIG{'giga_tmp_dir'}."/$giga_session"."_qstring";
 
 $content_type = $ENV{'CONTENT_TYPE'};
-my $len = $ENV{'CONTENT_LENGTH'};
+my $len = $ENV{'CONTENT_LENGTH'} ? $ENV{'CONTENT_LENGTH'} : 0;
 $bRead=0;
 $|=1;
 
@@ -156,7 +156,7 @@ my $j=0;
 
 while(($key,$value) = each %vars)
 {
-	# carp "$key => $value";
+#	carp "$key => $value";
 	$file_upload = $cgi->param($key);
 	if(defined $value && $value ne '') {
 		my $fh = $cgi->upload($key);
@@ -179,8 +179,18 @@ while(($key,$value) = each %vars)
 			$qstring .= "gigafile[$key][tmp_name]=$tmp_filename&gigafile[$key][type]=$type&";
 			$j++;
 		} else {
-			$value =~ s/([^a-zA-Z0-9_\-.])/uc sprintf("%%%02x",ord($1))/eg;
-			$qstring .= "$key=$value&" ;
+			# From http://perldoc.perl.org/CGI.html:
+			# Multivalued parameters will be returned as a packed string, separated by the "\0" (null) character. 
+			# You must split this packed string in order to get at the individual values. 
+			@multiValues = split( "\0", $value );
+			if( !@multiValues ) {
+				@multiValues = ( $value ); 
+			}
+
+			foreach $mValue ( @multiValues ) {
+				$mValue =~ s/([^a-zA-Z0-9_\-.])/uc sprintf("%%%02x",ord($1))/eg;
+				$qstring .= "$key=$mValue&" ;
+			}
 		}
 	}
 }
