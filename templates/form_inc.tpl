@@ -7,7 +7,7 @@
 	{forminput}
 		<input style="float:right" type="button" value="{tr}Add upload slot{/tr}" onclick="addUploadSlot();" />
 		{section name=foo loop=$giga_slot_count|default:10}
-		<input name="{$smarty.section.foo.iteration}" type="file" /><br />
+		<input name="{$giga_input_name}{$smarty.section.foo.iteration}" type="file" /><br />
 		{/section}
 		<span id="newgigaslot"></span>
 		{if $giga_form_help}
