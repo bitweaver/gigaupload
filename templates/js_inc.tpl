@@ -9,15 +9,15 @@ var pu = null;
 function startGigaUpload( pForm ) {
 	disableSubmit('submitbutton');
     progressUrl = "{/literal}{$smarty.const.GIGAUPLOAD_PKG_URL}{literal}progress.php";
-    parameters = "&giga_session="+$('gigasession').value +"&post_url={/literal}{$smarty.server.PHP_SELF}{literal}";
+    parameters = "&giga_session="+document.getElementById('gigasession').value +"&post_url={/literal}{$smarty.server.PHP_SELF}{literal}";
 	pForm.submit();
 
 	hideById('uploadblock');
-	if( $('gigaprogresspopup') ) {
+	if( document.getElementById('gigaprogresspopup') ) {
 	    popUpWin(progressUrl+'?'+parameters,"standard",460,200);
 	} else {
 		showById('gigaprogress');
-		var pb = $("gigaprogressbar");
+		var pb = document.getElementById("gigaprogressbar");
 		pu = new Ajax.PeriodicalUpdater(pb,progressUrl,{
 			'asynchronous':true,
 			'decay': 2,
