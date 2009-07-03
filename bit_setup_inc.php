@@ -66,7 +66,12 @@ if( $gBitSystem->isPackageActive( GIGAUPLOAD_PKG_NAME ) ) {
 			}
 		}
 	}
-	
+
+	$gLibertySystem->registerService( LIBERTY_SERVICE_UPLOAD, GIGAUPLOAD_PKG_NAME, array(
+			'content_edit_mini_tpl'		=> 'bitpackage:gigaupload/progress_container_inc.tpl',
+			'content_upload_form_tpl'	=> 'bitpackage:gigaupload/service_upload_form.tpl',
+			'content_upload_js_tpl'		=> 'bitpackage:gigaupload/js_inc.tpl',
+	) );
 }
 
 	// These need to be declared even if the package is disabled so templates that might use these will still compile. 
