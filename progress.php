@@ -1,9 +1,9 @@
 <?php
 /**
- * @version $Header: /cvsroot/bitweaver/_bit_gigaupload/progress.php,v 1.17 2009/10/01 13:45:36 wjames5 Exp $
+ * @version $Header: /cvsroot/bitweaver/_bit_gigaupload/progress.php,v 1.18 2009/10/01 14:16:59 wjames5 Exp $
  *
  * Copyright (c) 2007 bitweaver.org
- * All Rights Reserved. See copyright.txt for details and a complete list of authors.
+ * All Rights Reserved. See below for details and a complete list of authors.
  * Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See http://www.gnu.org/copyleft/lesser.html for details
  * @author Mike Hodgson
  * 
