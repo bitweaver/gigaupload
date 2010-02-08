@@ -25,7 +25,7 @@
 # 1.20 changed the form submit mechanism to filter for certain types
 #      of files
 
-require_once( '../bit_setup_inc.php' );
+require_once( '../kernel/setup_inc.php' );
 
 $gBitSmarty->assign( 'sid', $gBitUser->mUserId.'_'.md5(uniqid(rand())) );
 	/*
