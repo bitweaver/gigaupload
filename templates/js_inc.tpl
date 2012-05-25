@@ -9,7 +9,7 @@ var pu = null;
 function startGigaUpload( pForm ) {
 	disableSubmit('submitbutton');
     progressUrl = "{/literal}{$smarty.const.GIGAUPLOAD_PKG_URL}{literal}progress.php";
-    parameters = "&giga_session="+document.getElementById('gigasession').value +"&post_url={/literal}{$smarty.server.PHP_SELF}{literal}";
+    parameters = "&giga_session="+document.getElementById('gigasession').value +"&post_url={/literal}{$smarty.server.SCRIPT_NAME}{literal}";
 	pForm.submit();
 
 	hideById('uploadblock');
@@ -42,7 +42,7 @@ function addUploadSlot() {
 
 function updateProgress(pb,req) {
 		pb.innerHTML=req.responseText;
-//		parent.location.href={/literal}"{$postUrl|default:$smarty.server.PHP_SELF}" + "?giga_post=1&giga_session={$smarty.request.giga_session}{literal}";
+//		parent.location.href={/literal}"{$postUrl|default:$smarty.server.SCRIPT_NAME}" + "?giga_post=1&giga_session={$smarty.request.giga_session}{literal}";
 }
 function stopProgress() {
 	if( pu ) {

@@ -1,4 +1,4 @@
-<input type="hidden" id="giga_post_url" name="giga_post_url" value="{$smarty.server.PHP_SELF}" />
+<input type="hidden" id="giga_post_url" name="giga_post_url" value="{$smarty.server.SCRIPT_NAME}" />
 <input type="hidden" id="gigasession" name="giga_session" value="{giga_session}" />
 {$gigaPostAction}
 

@@ -17,12 +17,12 @@
 	<br />
 
 	<p class="gigaprocessing">
-		{biticon ipackage="liberty" iname="busy" iexplain=Busy iforce=icon}<br />{tr}Processing uploaded files. You should be redirected as soon as processing has been completed. If not, <a href="{$postUrl|default:$smarty.server.PHP_SELF}?giga_post=1&giga_session={$smarty.request.giga_session}"></a>{/tr}
+		{biticon ipackage="liberty" iname="busy" iexplain=Busy iforce=icon}<br />{tr}Processing uploaded files. You should be redirected as soon as processing has been completed. If not, <a href="{$postUrl|default:$smarty.server.SCRIPT_NAME}?giga_post=1&giga_session={$smarty.request.giga_session}"></a>{/tr}
 	</p>
 
 	<script type="text/javascript">
 		stopProgress();
-		location.href="{$postUrl|default:$smarty.server.PHP_SELF}"+"?giga_post=1&giga_session={$smarty.request.giga_session}";
+		location.href="{$postUrl|default:$smarty.server.SCRIPT_NAME}"+"?giga_post=1&giga_session={$smarty.request.giga_session}";
 	</script>
 {elseif $currentSize}
 	<h2>{tr}File Upload In Progress{/tr}</h2>
