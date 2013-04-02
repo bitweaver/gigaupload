@@ -2,7 +2,7 @@
 <input type="hidden" id="gigasession" name="giga_session" value="{giga_session}" />
 {$gigaPostAction}
 
-<div class="row" id="gigauploadblock">
+<div class="control-group" id="gigauploadblock">
 	{formlabel label=$giga_label|default:"Upload Files"}
 	{forminput}
 		<input style="float:right" type="button" value="{tr}Add upload slot{/tr}" onclick="addUploadSlot();" />

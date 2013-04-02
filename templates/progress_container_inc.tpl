@@ -1,3 +1,3 @@
-<div class="row" id="gigaprogress" style="display:none;">
+<div class="control-group" id="gigaprogress" style="display:none;">
 	<div id="gigaprogressbar"></div>
 </div>

@@ -1,7 +1,7 @@
 {if $signalExists}
 	<h2>{tr}File Upload Complete{/tr}</h2>
 
-	<div class="row">
+	<div class="control-group">
 		{formlabel label="Progress"}
 		{forminput}
 			{$currentSize|display_bytes} / {$totalSize|display_bytes}
@@ -27,28 +27,28 @@
 {elseif $currentSize}
 	<h2>{tr}File Upload In Progress{/tr}</h2>
 
-	<div class="row">
+	<div class="control-group">
 		{formlabel label="Progress"}
 		{forminput}
 			{$currentSize|display_bytes} / {$totalSize|display_bytes}
 		{/forminput}
 	</div>
 
-	<div class="row">
+	<div class="control-group">
 		{formlabel label="Speed"}
 		{forminput}
 			{$kbitSpeed} kbit/s
 		{/forminput}
 	</div>
 
-	<div class="row">
+	<div class="control-group">
 		{formlabel label="Time Elapsed"}
 		{forminput}
 			{$timeElapsedStr}
 		{/forminput}
 	</div>
 
-	<div class="row">
+	<div class="control-group">
 		{formlabel label="Time Remaining"}
 		{forminput}
 			{$timeRemainStr}
