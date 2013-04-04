@@ -25,7 +25,7 @@
 			{include file="bitpackage:gigaupload/progress_container_inc.tpl"}
 			
 			<div class="control-group submit">
-				<input type="submit" id="submitbutton" value="Upload" {if $submitClick}onclick="{$submitClick}"{/if}/>
+				<input type="submit" class="btn" id="submitbutton" value="Upload" {if $submitClick}onclick="{$submitClick}"{/if}/>
 			</div>
 		</div>
 	{/form}
